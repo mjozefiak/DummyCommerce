@@ -1,7 +1,7 @@
 import {ProductInterface} from "../interfaces/Product";
 import {NavLink} from "react-router-dom";
 
-const Product = (props: ProductInterface) => {
+const ProductListItem = (props: ProductInterface) => {
    return (
       <NavLink className="flex flex-col gap-2" to={`/products/${String(props.id)}`}>
          <div className="flex justify-center">
@@ -13,4 +13,4 @@ const Product = (props: ProductInterface) => {
    );
 };
 
-export default Product;
+export default ProductListItem

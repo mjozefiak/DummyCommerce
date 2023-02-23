@@ -1,26 +1,26 @@
 import {IoCloseOutline} from "react-icons/io5";
 import {createPortal} from "react-dom";
 import {useDispatch} from "react-redux";
-import {Sidebar, SidebarBackdrop} from "../interfaces/Sidebar";
+import {SidebarInterface, SidebarBackdropInterface} from "../interfaces/Sidebar";
 import {menuActions} from "../store/menu-slice";
 
 
 const overlayPortal: HTMLElement = document.querySelector('#overlay')!
 
 
-const Backdrop = (props: SidebarBackdrop) => {
+const Backdrop = (props: SidebarBackdropInterface) => {
    return createPortal(
       <>
          <div className="bg-black bg-opacity-20 absolute h-full w-full flex justify-end" onClick={props.closeSidebar}>
          </div>
-         <div className="absolute h-full w-2/3 right-0">
+         <div className="absolute h-full w-2/3 right-0 z-10">
          {props.children}
          </div>
       </>,
       overlayPortal
    )
 }
-const Sidebar = (props: Sidebar) => {
+const Sidebar = (props: SidebarInterface) => {
    const dispatch = useDispatch()
    const closeSidebarHandler = () => {
       if (props.type === 'MENU') {

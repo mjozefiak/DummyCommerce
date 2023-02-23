@@ -1,13 +1,13 @@
 import {Await, defer, LoaderFunctionArgs, useLoaderData, useParams} from "react-router-dom";
-import {ProductInterface, ProductsInterface} from "../interfaces/Product";
-import product from "../components/Product";
-import Product from "../components/Product";
+import {ProductInterface, ProductsListInterface} from "../interfaces/Product";
+import ProductListItem from "../components/ProductListItem";
 import {Suspense} from "react";
-import ProductLoader from "../components/ProductLoader";
+import ProductsListLoader from "../components/ProductsListLoader";
+import {getSingleCategory} from "../helpers/fetch";
 
 const CategoryPage = () => {
 
-   const {products} = useLoaderData() as ProductsInterface
+   const {products} = useLoaderData() as ProductsListInterface
    const {category} = useParams()
 
    return (
@@ -17,10 +17,10 @@ const CategoryPage = () => {
             <span className="font-semibold text-blue-600 text-xl">in {category}</span>
          </h2>
          <main className="grid grid-cols-2 gap-10 px-3 mt-10">
-            <Suspense fallback={<ProductLoader />}>
+            <Suspense fallback={<ProductsListLoader />}>
                <Await resolve={products}>
                   {(loadProducts: ProductInterface[]) => loadProducts.map((product) => (
-                     <Product
+                     <ProductListItem
                         key={product.id}
                         id={product.id}
                         title={product.title}
@@ -28,7 +28,6 @@ const CategoryPage = () => {
                         description={product.description}
                         category={product.category}
                         image={product.image}
-                        rating={product.rating}
                      />
                   ))}
                </Await>
@@ -39,15 +38,8 @@ const CategoryPage = () => {
 }
 
 export default CategoryPage
-const loadProductsFromCategory = async (category: string | undefined): Promise<ProductsInterface> => {
-   const res = await fetch(`https://fakestoreapi.com/products/category/${category}`)
-   if (!res.ok) {
-
-   }
-   return await res.json()
-}
 
 export const loader = async ({params}: LoaderFunctionArgs)  => {
-   const products = loadProductsFromCategory(params.category)
+   const products = getSingleCategory(params.category)
    return defer({products})
 }

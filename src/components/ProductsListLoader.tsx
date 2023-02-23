@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductLoader = () => {
+const ProductsListLoader = () => {
    return (
          <div className="animate-pulse flex flex-col">
             <div className="rounded bg-slate-600 h-32 w-full"></div>
@@ -18,5 +18,4 @@ const ProductLoader = () => {
             </div>
    );
 };
-
-export default ProductLoader;
+export default ProductsListLoader;

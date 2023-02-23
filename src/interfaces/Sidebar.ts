@@ -1,12 +1,12 @@
 import {ReactNode} from "react";
 
-export interface Sidebar {
+export interface SidebarInterface {
    name: string
    children: ReactNode
    type: "MENU" | "BASKET"
 }
 
-export interface SidebarBackdrop {
+export interface SidebarBackdropInterface {
    children: ReactNode,
    closeSidebar(): void
 }

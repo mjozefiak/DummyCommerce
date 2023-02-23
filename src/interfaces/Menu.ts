@@ -1,3 +1,3 @@
-export interface menuInterface {
+export interface MenuInterface {
    categories: string[]
 }

@@ -5,12 +5,16 @@ export interface ProductInterface {
    description: string
    category: string
    image: string
-   rating: {
+   rating?: {
       rate: number
       count: number
    }
 }
 
-export interface ProductsInterface {
+export interface ProductsListInterface {
    products: ProductInterface[]
+}
+
+export interface PropProductInterface {
+   product: ProductInterface
 }

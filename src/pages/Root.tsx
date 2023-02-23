@@ -1,7 +1,7 @@
 import {defer, Outlet} from "react-router-dom";
 import Header from "../components/Header";
 import React from "react";
-import {menuInterface} from "../interfaces/Menu";
+import {getAllCategories} from "../helpers/fetch";
 
 const RootLayout = () => {
    return (
@@ -14,15 +14,7 @@ const RootLayout = () => {
 
 export default RootLayout
 
-const loadCategories = async () => {
-
-}
-
-export const loader = async ():Promise<menuInterface> => {
-   const res = await fetch('https://fakestoreapi.com/products/categories')
-   if (!res.ok) {
-
-   }
-   const categories = await res.json()
-   return { categories }
+export const loader = async () => {
+   const categories = getAllCategories()
+   return defer({categories})
 }

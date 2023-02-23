@@ -4,17 +4,22 @@ import HomePage from "./pages/Home"
 import ErrorPage from "./pages/Error";
 import CategoryPage, {loader as productsFromCategoryLoader} from "./pages/Category";
 import {loader as categoriesLoader} from "./pages/Root";
+import ProductPage, {loader as productLoader} from "./pages/Product";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
       <Route path="/" id="root" element={<RootLayout/>} loader={categoriesLoader}>
-         <Route index element={<HomePage />} />
+         <Route index element={<HomePage/>}/>
 
          <Route path="categories">
-            <Route path=":category" element={<CategoryPage />} loader={productsFromCategoryLoader}/>
+            <Route path=":category" element={<CategoryPage/>} loader={productsFromCategoryLoader}/>
          </Route>
 
-         <Route path="*" element={<ErrorPage />} />
+         <Route path="products">
+            <Route path=":productId" element={<ProductPage/>} loader={productLoader}/>
+         </Route>
+
+         <Route path="*" element={<ErrorPage/>}/>
       </Route>
    )
 )
@@ -22,7 +27,7 @@ const router = createBrowserRouter(
 function App() {
    return (
       <div className="App">
-         <RouterProvider router={router} />
+         <RouterProvider router={router}/>
       </div>
    )
 }
