@@ -1,15 +1,32 @@
-import React, {FormEvent, useState} from 'react';
-import {PropProductInterface} from "../interfaces/Product";
+import React, {createRef, FormEvent} from 'react';
+import {PropProductInterface} from "../../interfaces/Product";
 import {BsBasket} from "react-icons/bs";
-import NumberInput from "./NumberInput";
+import NumberInput from "../NumberInput";
+import Rating from "../Rating";
+import {useDispatch} from "react-redux";
+import {basketActions} from "../../store/basket-slice";
 
 
 const ProductDetails = ({product}: PropProductInterface) => {
-   const [inputValue, setInputValue] = useState<Number>()
+   const dispatch = useDispatch()
+   const inputRef = createRef<HTMLInputElement>()
 
    const addToCartHandler = (e: FormEvent) => {
       e.preventDefault()
+
+      const productToBasket = {
+         id: product.id,
+         title: product.title,
+         image: product.image,
+         price: product.price,
+         quantity: Number(inputRef.current?.value)
+      }
+
+      dispatch(basketActions.addToBasket(productToBasket))
+      dispatch(basketActions.getTotalPrice())
+      dispatch(basketActions.toggleVisibility())
    }
+
 
    return (
       <>
@@ -17,12 +34,12 @@ const ProductDetails = ({product}: PropProductInterface) => {
          <div className="mt-3 mb-3">
             <h1 className="text-xl font-semibold">{product.title}</h1>
             <div className="flex justify-between items-center my-2">
-               <h3 className="text-lg font-semibold text-gray-500">Price</h3>
+               <Rating rating={Number((product.rating.rate).toFixed(0))}/>
                <span className="text-2xl mb-2">${(product.price).toFixed(2)}</span>
             </div>
 
             <form className="flex items-center gap-5">
-               <NumberInput/>
+               <NumberInput ref={inputRef}/>
                <button
                   className="w-full flex items-center justify-center gap-2 h-10 border-blue-500 border-2 bg-blue-500 text-white rounded px-3 py-2 hover:text-blue-500 hover:bg-white"
                   onClick={addToCartHandler}

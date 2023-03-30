@@ -1,8 +1,8 @@
 import {Await, defer, LoaderFunctionArgs, useLoaderData, useParams} from "react-router-dom";
 import {ProductInterface, ProductsListInterface} from "../interfaces/Product";
-import ProductListItem from "../components/ProductListItem";
+import ProductListItem from "../components/Product/ProductListItem";
 import {Suspense} from "react";
-import ProductsListLoader from "../components/ProductsListLoader";
+import ProductsListLoader from "../components/Product/ProductsListLoader";
 import {getSingleCategory} from "../helpers/fetch";
 
 const CategoryPage = () => {
@@ -20,15 +20,7 @@ const CategoryPage = () => {
             <Suspense fallback={<ProductsListLoader />}>
                <Await resolve={products}>
                   {(loadProducts: ProductInterface[]) => loadProducts.map((product) => (
-                     <ProductListItem
-                        key={product.id}
-                        id={product.id}
-                        title={product.title}
-                        price={product.price}
-                        description={product.description}
-                        category={product.category}
-                        image={product.image}
-                     />
+                     <ProductListItem {...product} key={product.id}/>
                   ))}
                </Await>
             </Suspense>

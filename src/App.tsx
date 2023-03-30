@@ -3,12 +3,12 @@ import RootLayout from "./pages/Root";
 import HomePage from "./pages/Home"
 import ErrorPage from "./pages/Error";
 import CategoryPage, {loader as productsFromCategoryLoader} from "./pages/Category";
-import {loader as categoriesLoader} from "./pages/Root";
+import {menuLoader} from "./pages/Root";
 import ProductPage, {loader as productLoader} from "./pages/Product";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
-      <Route path="/" id="root" element={<RootLayout/>} loader={categoriesLoader}>
+      <Route path="/" id="root" element={<RootLayout/>} loader={menuLoader}>
          <Route index element={<HomePage/>}/>
 
          <Route path="categories">

@@ -1,5 +1,5 @@
 import {defer, Outlet} from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import React from "react";
 import {getAllCategories} from "../helpers/fetch";
 
@@ -14,7 +14,7 @@ const RootLayout = () => {
 
 export default RootLayout
 
-export const loader = async () => {
+export const menuLoader = async () => {
    const categories = getAllCategories()
    return defer({categories})
 }
