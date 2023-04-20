@@ -1,4 +1,4 @@
-export interface BasketItemInterFace {
+export interface BasketItemInterface {
    id: number
    title: string
    image: string
@@ -7,7 +7,7 @@ export interface BasketItemInterFace {
 }
 
 export interface BasketInterface {
-   products: BasketItemInterFace[]
+   products: BasketItemInterface[]
    totalPrice: number
    isVisible: boolean
 }

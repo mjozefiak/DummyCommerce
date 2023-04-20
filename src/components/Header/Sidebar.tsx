@@ -19,7 +19,7 @@ const Backdrop = (props: SidebarBackdropInterface) => {
             exit={{opacity: 0}}
          >
          </motion.div>
-         <div className="absolute h-full w-2/3 right-0 z-10">
+         <div className="absolute h-full w-80 right-0 z-10">
             {props.children}
          </div>
       </>,

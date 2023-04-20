@@ -3,7 +3,8 @@ import {BsBasket} from "react-icons/bs"
 import {MdDarkMode} from "react-icons/Md"
 import {FiMenu} from "react-icons/fi";
 import {NavLink} from "react-router-dom";
-import {AnimatePresence} from "framer-motion";
+import {useLocation} from "react-router-dom";
+import {AnimatePresence, motion} from "framer-motion";
 
 import {menuActions} from "../../store/menu-slice";
 import {RootState} from "../../store/store";
@@ -15,9 +16,9 @@ import {basketActions} from "../../store/basket-slice";
 
 const Header = (): JSX.Element => {
    const dispatch = useDispatch()
-
+   const location = useLocation()
    const menuState = useSelector((state: RootState) => state.menu.isVisible)
-   const basketState = useSelector((state: RootState) => state.basket.isVisible)
+   const basketState = useSelector((state: RootState) => state.basket)
    const changeMenuStateHandler = () => {
       dispatch(menuActions.toggle())
    }
@@ -36,10 +37,28 @@ const Header = (): JSX.Element => {
                <MdDarkMode className="text-xl"/>
                <span className="text-xs">Theme</span>
             </button>
-            <button className="flex flex-col items-center p-1" onClick={changeBasketVisibilityHandler}>
-               <BsBasket className="text-xl"/>
-               <span className="text-xs">Basket</span>
-            </button>
+            <AnimatePresence>
+               {location.pathname != '/basket' &&
+                  <motion.button
+                     className="flex flex-col items-center p-1 relative"
+                     onClick={changeBasketVisibilityHandler}
+                     exit={{transform: 'scale(0)'}}
+                     animate={{transform: 'scale(1)'}}
+                  >
+                     {basketState.products.length > 0 &&
+                        <motion.span
+                           className="w-4 h-4 rounded-full bg-blue-600 text-white text-xs absolute right-0 top-0"
+                           initial={{transform: 'scale(0)'}}
+                           animate={{transform: 'scale(1)'}}
+                        >
+                           {basketState.products.length}
+                        </motion.span>
+                     }
+                     <BsBasket className="text-xl"/>
+                     <span className="text-xs">Basket</span>
+                  </motion.button>
+               }
+            </AnimatePresence>
             <button className="flex flex-col items-center p-1" onClick={changeMenuStateHandler}>
                <FiMenu className="text-xl"/>
                <span className="text-xs">Menu</span>
@@ -51,7 +70,7 @@ const Header = (): JSX.Element => {
                   <Menu/>
                </Sidebar>
             }
-            {basketState &&
+            {basketState.isVisible &&
                <Sidebar name={"Basket"} type="BASKET">
                   <Basket/>
                </Sidebar>

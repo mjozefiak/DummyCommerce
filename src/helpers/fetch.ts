@@ -24,3 +24,4 @@ export const getAllCategories = async (): Promise<MenuInterface> => {
    }
    return await res.json()
 }
+

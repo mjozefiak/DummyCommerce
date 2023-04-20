@@ -1,12 +1,15 @@
 import {useDispatch, useSelector} from "react-redux";
 import {BsBasket} from "react-icons/bs";
 import {RootState} from "../../../store/store";
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import BasketItem from "./BasketItem";
+import {basketActions} from "../../../store/basket-slice";
+import EmptyBasket from "../../EmptyBasket";
 
 const Basket = () => {
    const basketState = useSelector((state: RootState) => state.basket)
    const dispatch = useDispatch()
+
    if(basketState.products.length){
       return (
          <>
@@ -17,22 +20,25 @@ const Basket = () => {
                ))}
             </ul>
             <div className="flex justify-between items-center">
-               <h4 className="text-gray-500 font-light">
-                  Total Price: <span className="font-semibold text-black">$ {basketState.totalPrice}</span>
+               <h4 className="text-gray-500 font-light flex flex-col">
+                  <span> Total Price:</span>
+                  <span className="font-semibold text-black">$ {basketState.totalPrice}</span>
                </h4>
-               <NavLink className="rounded bg-blue-500 text-white flex items-center gap-3 p-2 hover:bg-blue-400" to="#">
-                  Checkout
+               <NavLink
+                  className="rounded bg-blue-500 text-white flex items-center gap-3 p-2 hover:bg-blue-400"
+                  to="/basket"
+                  onClick={() => dispatch(basketActions.toggleVisibility())}
+               >
+                  Go to basket
                   <BsBasket></BsBasket>
                </NavLink>
 
             </div>
-
-
          </>
       );
    } else {
       return (
-         <h4>Your cart is empty</h4>
+         <EmptyBasket />
       )
    }
 
