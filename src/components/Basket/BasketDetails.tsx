@@ -1,10 +1,8 @@
-import {useState} from "react";
-import {AiFillCloseCircle, BsFillCheckCircleFill} from "react-icons/all";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store/store";
 
 const BasketDetails = () => {
-   const state = true
+   const state = false
    const basketState = useSelector((state: RootState) => state.basket)
 
    return (
