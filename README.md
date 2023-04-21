@@ -10,9 +10,9 @@ An e-commerce website created with <a href="https://fakestoreapi.com/">FakeStore
 
 This project is currently in development. Users can browse products divided into categories, add them to cart and mange quantity of products in cart. The cart is saved to local storage
 
-## Project Screen Shot(s)
+## Project Screen Shots 
 
- ![img.png](img.png) ![img_1.png](img_1.png)
+ <img src="public/ss1.png" alt="cart" style="width: 300px"> <img src="public/ss2.png" alt="product page" style="width: 300px">   
 
 ## Installation and Setup Instructions
 

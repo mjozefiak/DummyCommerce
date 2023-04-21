@@ -5,6 +5,7 @@ import NumberInput from "../NumberInput";
 import Rating from "../Rating";
 import {useDispatch} from "react-redux";
 import {basketActions} from "../../store/basket-slice";
+import {uiActions} from "../../store/ui-slice";
 
 
 const ProductDetails = ({product}: PropProductInterface) => {
@@ -23,7 +24,7 @@ const ProductDetails = ({product}: PropProductInterface) => {
       }
 
       dispatch(basketActions.addToBasket(productToBasket))
-      dispatch(basketActions.toggleVisibility())
+      dispatch(uiActions.toggleBasketState())
    }
 
 

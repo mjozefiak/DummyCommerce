@@ -23,7 +23,7 @@ const BasketDetails = () => {
          </div>
          <h3 className="text-md font-semibold text-gray-500">Discount code</h3>
          <label className="flex">
-            <input type="text" className="w-full h-8 rounded shadow" ref={ref}/>
+            <input type="text" className="w-full h-8 rounded shadow p-2 text-gray-600 text-sm font-semibold" ref={ref}/>
             <button className="w-20 bg-blue-600 text-white rounded border-2 border-blue-600 hover:bg-white hover:text-blue-600" onClick={useVoucherHandler}>Use</button>
          </label>
          {basketState.voucher &&

@@ -3,8 +3,8 @@ import {BsBasket} from "react-icons/bs";
 import {RootState} from "../../../store/store";
 import {NavLink} from "react-router-dom";
 import HeaderBasketItem from "./HeaderBasketItem";
-import {basketActions} from "../../../store/basket-slice";
 import EmptyBasket from "../../EmptyBasket";
+import {uiActions} from "../../../store/ui-slice";
 
 const Basket = () => {
    const basketState = useSelector((state: RootState) => state.basket)
@@ -27,7 +27,7 @@ const Basket = () => {
                <NavLink
                   className="rounded bg-blue-500 text-white flex items-center gap-3 p-2 hover:bg-blue-400"
                   to="/basket"
-                  onClick={() => dispatch(basketActions.toggleVisibility())}
+                  onClick={() => dispatch(uiActions.toggleBasketState())}
                >
                   Go to basket
                   <BsBasket></BsBasket>
