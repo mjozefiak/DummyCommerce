@@ -8,7 +8,13 @@ export interface BasketItemInterface {
 
 export interface BasketInterface {
    products: BasketItemInterface[]
+   delivery: DeliveryInterface
+   voucher?: number
+   subtotalPrice: number
    totalPrice: number
-   isVisible: boolean
 }
 
+export interface DeliveryInterface {
+   method: string,
+   price: number
+}

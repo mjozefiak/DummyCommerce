@@ -1,8 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
 import {BsBasket} from "react-icons/bs";
 import {RootState} from "../../../store/store";
-import {Link, NavLink} from "react-router-dom";
-import BasketItem from "./BasketItem";
+import {NavLink} from "react-router-dom";
+import HeaderBasketItem from "./HeaderBasketItem";
 import {basketActions} from "../../../store/basket-slice";
 import EmptyBasket from "../../EmptyBasket";
 
@@ -16,7 +16,7 @@ const Basket = () => {
             <h4 className="text-xs font-semibold text-gray-500 mb-4 mt-1">Products</h4>
             <ul className="flex flex-col gap-3 mb-5">
                {basketState.products.map(product => (
-                  <BasketItem {...product} key={product.id}/>
+                  <HeaderBasketItem {...product} key={product.id}/>
                ))}
             </ul>
             <div className="flex justify-between items-center">

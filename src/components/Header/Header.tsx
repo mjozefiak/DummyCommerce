@@ -5,25 +5,23 @@ import {FiMenu} from "react-icons/fi";
 import {NavLink} from "react-router-dom";
 import {useLocation} from "react-router-dom";
 import {AnimatePresence, motion} from "framer-motion";
-
-import {menuActions} from "../../store/menu-slice";
+import {uiActions} from "../../store/ui-slice";
 import {RootState} from "../../store/store";
 import Menu from "./Menu";
 import Sidebar from "./Sidebar";
 import Basket from "./Basket/Basket";
-import {basketActions} from "../../store/basket-slice";
 
 
 const Header = (): JSX.Element => {
    const dispatch = useDispatch()
    const location = useLocation()
-   const menuState = useSelector((state: RootState) => state.menu.isVisible)
+   const uiState = useSelector((state: RootState) => state.ui)
    const basketState = useSelector((state: RootState) => state.basket)
    const changeMenuStateHandler = () => {
-      dispatch(menuActions.toggle())
+      dispatch(uiActions.toggleMenuState())
    }
    const changeBasketVisibilityHandler = () => {
-      dispatch(basketActions.toggleVisibility())
+      dispatch(uiActions.toggleBasketState())
    }
 
 
@@ -65,12 +63,12 @@ const Header = (): JSX.Element => {
             </button>
          </div>
          <AnimatePresence>
-            {menuState &&
+            {uiState.menuState &&
                <Sidebar name={"Menu"} type="MENU">
                   <Menu/>
                </Sidebar>
             }
-            {basketState.isVisible &&
+            {uiState.basketState &&
                <Sidebar name={"Basket"} type="BASKET">
                   <Basket/>
                </Sidebar>

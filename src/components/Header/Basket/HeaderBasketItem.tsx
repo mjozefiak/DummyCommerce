@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {BasketItemInterface} from "../../../interfaces/Basket";
 import {Link} from "react-router-dom";
 
-const BasketItem = (props: BasketItemInterface) => {
+const HeaderBasketItem = (props: BasketItemInterface) => {
    const dispatch = useDispatch()
 
    return (
@@ -52,4 +52,4 @@ const BasketItem = (props: BasketItemInterface) => {
    );
 };
 
-export default BasketItem;
+export default HeaderBasketItem;

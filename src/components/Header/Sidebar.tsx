@@ -3,8 +3,7 @@ import {createPortal} from "react-dom";
 import {useDispatch} from "react-redux";
 import {motion} from 'framer-motion'
 import {SidebarInterface, SidebarBackdropInterface} from "../../interfaces/Sidebar";
-import {menuActions} from "../../store/menu-slice";
-import {basketActions} from "../../store/basket-slice";
+import {uiActions} from "../../store/ui-slice";
 
 const overlayPortal: HTMLElement = document.querySelector('#overlay')!
 
@@ -32,10 +31,10 @@ const Sidebar = (props: SidebarInterface) => {
    const closeSidebarHandler = () => {
       switch (props.type) {
          case "MENU":
-            dispatch(menuActions.toggle())
+            dispatch(uiActions.toggleMenuState())
             break
          case "BASKET":
-            dispatch(basketActions.toggleVisibility())
+            dispatch(uiActions.toggleBasketState())
             break
       }
    }

@@ -2,13 +2,13 @@ import {Await, NavLink, useRouteLoaderData} from "react-router-dom";
 import {AiOutlineRight} from "react-icons/ai";
 import {MenuInterface} from "../../interfaces/Menu";
 import {useDispatch} from "react-redux";
-import {menuActions} from "../../store/menu-slice";
+import {uiActions} from "../../store/ui-slice";
 
 const Menu = () => {
    const {categories} = useRouteLoaderData('root') as MenuInterface
    const dispatch = useDispatch()
    const changeMenuStateHandler = () => {
-      dispatch(menuActions.toggle())
+      dispatch(uiActions.toggleMenuState())
    }
 
    return (

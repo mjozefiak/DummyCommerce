@@ -23,7 +23,6 @@ const ProductDetails = ({product}: PropProductInterface) => {
       }
 
       dispatch(basketActions.addToBasket(productToBasket))
-      dispatch(basketActions.getTotalPrice())
       dispatch(basketActions.toggleVisibility())
    }
 
