@@ -16,7 +16,7 @@ const CategoryPage = () => {
             Products <br/>
             <span className="font-semibold text-blue-600 text-xl">in {category}</span>
          </h2>
-         <main className="grid grid-cols-2 gap-10 px-3 mt-10">
+         <main className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 px-3 mt-10">
             <Suspense fallback={<ProductsListLoader />}>
                <Await resolve={products}>
                   {(loadProducts: ProductInterface[]) => loadProducts.map((product) => (

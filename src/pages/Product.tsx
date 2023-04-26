@@ -1,8 +1,8 @@
 import {Await, defer, LoaderFunctionArgs, useLoaderData, useNavigate} from "react-router-dom";
 import {AiOutlineLeft} from "react-icons/ai";
-import ProductDetails from "../components/Product/ProductDetails";
+import ProductDetails from "../components/Product/ProductDetails/ProductDetails";
 import {Suspense} from "react";
-import ProductDetailsLoader from "../components/Product/ProductDetailsLoader";
+import ProductDetailsLoader from "../components/Product/ProductDetails/ProductDetailsLoader";
 import {getProducts} from "../helpers/fetch";
 
 const ProductPage = () => {
